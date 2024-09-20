@@ -1,0 +1,169 @@
+body {
+  margin-top: 50px;
+  width: 100%;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+table thead {
+  background-color: darkgray;
+}
+
+table tbody tr:nth-child(even) {
+  background-color: gainsboro;
+}
+
+table tfoot {
+  background-color: darkgray;
+}
+
+.title-main {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.search-main {
+  width: 90%;
+  margin: 0 auto;
+  display: block;
+}
+
+.brokers {
+  width: 100%;
+}
+
+.daterange {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.search {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.chart-main {
+  margin: 0 auto;
+  margin-top: 30px;
+  width: 90%;
+  display: block;
+}
+
+.listings-chart {
+  width: 100%;
+}
+
+.chart {
+  margin: 0 auto;
+  width: 100%;
+}
+
+.chart-table {
+  width: 100%;
+  margin-top: 30px;
+}
+
+.table-average {
+  margin: 0 auto;
+  width: 100%;
+}
+
+.table-main {
+  margin: 0 auto;
+  margin-top: 30px;
+  width: 90%;
+}
+
+.table-listings {
+  width: 100%;
+}
+
+.not-found-card {
+  margin: 0 auto;
+  margin-top: 30px;
+  width: 90%;
+  height: 50px;
+  background-color: lightcoral;
+  border-style: solid;
+  border-width: thin;
+  border-color: red;
+}
+
+.error-message {
+  display: grid;
+  color: black;
+  font-weight: bold;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
+}
+
+
+@media(min-width:1200px) {
+  .not-found-card {
+    width: 50%;
+  }
+
+  .title-main {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .search-main {
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+  }
+
+  .brokers {
+    all: unset;
+  }
+
+  .daterange {
+    all: unset;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .search {
+    all: unset;
+  }
+
+  .chart-main {
+    margin: 0 auto;
+    margin-top: 30px;
+    width: 90%;
+    display: flex;
+  }
+
+  .listings-chart {
+    width: 50%;
+  }
+
+  .chart {
+    margin: 0 auto;
+    width: 90%;
+  }
+
+  .chart-table {
+    width: 50%;
+  }
+
+  .table-average {
+    margin: 0 auto;
+    width: 90%;
+  }
+
+  .table-main {
+    margin: 0 auto;
+    width: 90%;
+    margin-top: 50px;
+  }
+
+  .table-listings {
+    width: 100%;
+  }
+}
