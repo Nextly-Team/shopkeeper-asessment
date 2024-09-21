@@ -1,5 +1,7 @@
 # Shopkeeper asessment
 
+![Alt text](https://github.com/Nextly-Team/shopkeeper-asessment/tree/master/public/images/home_page.png "homePage")
+
 ## How to run
 
 Replace .env_sample to .env and set database values
