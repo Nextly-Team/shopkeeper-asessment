@@ -1,6 +1,6 @@
 # Shopkeeper asessment
 
-![Alt text](https://github.com/Nextly-Team/shopkeeper-asessment/tree/master/public/images/home_page.png "homePage")
+![Alt text](./public/images/home_page.png "homePage")
 
 ## How to run
 
