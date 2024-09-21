@@ -34,17 +34,25 @@
     <div class="listings-chart">
         <canvas id="listingsChart" class="chart"></canvas>
     </div>
+
+</div>
+
+<div class="table-main">
     <div class="chart-table">
-        <table id="listingsTable" class="table-average">
+        <p class="table-title">Average per website</p>
+        <table class="table-average" id="averageTable">
             <thead>
                 <tr>
-                    <th>
+                    <th onclick="sortTable(0, 'averageTable')">
                         Broker
                     </th>
-                    <th>
+                    <th onclick="sortTable(1, 'averageTable')">
+                        website
+                    </th>
+                    <th onclick="sortTable(2, 'averageTable')">
                         Total Revenue
                     </th>
-                    <th>
+                    <th onclick="sortTable(3, 'averageTable')">
                         Average Revenue
                     </th>
                 </tr>
@@ -53,48 +61,39 @@
                 {{#each tableAverage}}
                 <tr>
                     <td>{{sites_slug}}</td>
-                    <td>{{sum}}</td>
-                    <td>{{average}}</td>
+                    <td alt="{{url}}">{{parse_url}}</td>
+                    <td alt="{{sum}}">{{parse_sum}}</td>
+                    <td alt="{{average}}">{{parse_average}}</td>
                 </tr>
                 {{/each}}
             </tbody>
         </table>
     </div>
-</div>
-
-<div class="table-main">
-    <table class="table-listings" id="listingsTable">
-        <thead>
-            <tr>
-                <th onclick="sortTable(0)">Id</th>
-                <th onclick="sortTable(1)">Month</th>
-                <th onclick="sortTable(2)">Date</th>
-                <th onclick="sortTable(3)">Broker</th>
-                <th onclick="sortTable(4)">Revenue</th>
-            </tr>
-        </thead>
-        <tbody>
-            {{#each table.rows}}
-            <tr>
-                <td>{{listing_id}}</td>
-                <td>{{listing_month}}</td>
-                <td>{{listing_date}}</td>
-                <td>{{broker}}</td>
-                <td>{{revenue}}</td>
-            </tr>
-            {{/each}}
-        </tbody>
-        <tfoot>
-            <tr>
-                <th>{{table.total}}</th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th>{{table.total_revenue}}</th>
-            </tr>
-        </tfoot>
-    </table>
-
+    <div class="div-table-listings">
+        <p class="table-title">Listings Report</p>
+        <table class="table-listings" id="listingsTable">
+            <thead>
+                <tr>
+                    <th onclick="sortTable(0, 'listingsTable')">Broker</th>
+                    <th onclick="sortTable(1, 'listingsTable')">website</th>
+                    <th onclick="sortTable(2, 'listingsTable')">Month</th>
+                    <th onclick="sortTable(3, 'listingsTable')">Date</th>
+                    <th onclick="sortTable(4, 'listingsTable')">Revenue</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each table.rows}}
+                <tr>
+                    <td>{{broker}}</td>
+                    <td alt="{{url}}">{{listing_id}}</td>
+                    <td>{{listing_month}}</td>
+                    <td>{{listing_date}}</td>
+                    <td alt="{{revenue}}">{{parse_revenue}}</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
 </div>
 
 
@@ -126,9 +125,10 @@
         }
     })
 
-    function sortTable(n) {
+    function sortTable(n, obj) {
         var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-        table = document.getElementById("listingsTable");
+
+        table = document.getElementById(obj);
         switching = true;
         // Set the sorting direction to ascending:
         dir = "asc";

@@ -1,8 +1,4 @@
-const DealHistoryService = require('../services/deals_history.service')
-const findDeal = async () => {
-    const service = await DealHistoryService.findDeal()
-    return service
-}
+const DealHistoryService = require('../services/deals_listings.service')
 
 const findDealsListingPerMonthSum = async (queryString) => {
     return await DealHistoryService.findDealsListingPerMonthSum(queryString)
@@ -14,4 +10,4 @@ const findDealsListingPerMonth = async (queryString) => {
 }
 findDealsListingPerMonth
 
-module.exports = { findDeal, findDealsListingPerMonthSum, findDealsListingPerMonth }
+module.exports = { findDealsListingPerMonthSum, findDealsListingPerMonth }
