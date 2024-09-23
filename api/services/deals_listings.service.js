@@ -41,8 +41,9 @@ const findDealsListingPerMonth = async (queryString) => {
     const dealsResult = Utils.dealsResult(deals)
     return {
         'deals': dealsResult,
-        'total_revenue': Utils.money(totalRevenue),
-        'average': average
+        'totalRevenue': Utils.money(totalRevenue),
+        'average': average,
+        'totalDeals': deals.length
     }
 }
 

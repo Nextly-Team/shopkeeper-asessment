@@ -16,25 +16,25 @@ const getAverage = (deals) => {
         if (!acc[deal.url]) {
             acc[deal.url] = []
         }
-        acc[deal.url].push({ value: parseInt(deal.revenue), sites_slug: deal.sites_slug })
+        acc[deal.url].push({ value: parseInt(deal.revenue), sitesSlug: deal.sites_slug })
         return acc
     }, {})
     const result = {}
     for (const url in groupDeals) {
         const sum = groupDeals[url].reduce((acc, item) => acc + item.value, 0)
         const average = sum / groupDeals[url].length
-        let sites_slug = [...groupDeals[url]][0].sites_slug
-        let parse_url = url
-        let parse_sum = money(sum)
-        let parse_average = money(average)
+        let sitesSlug = [...groupDeals[url]][0].sitesSlug
+        let parseUrl = url
+        let parseSum = money(sum)
+        let parseAverage = money(average)
         if (url.length > 20)
-            parse_url = `${url.substring(0, 20)}...`
-        if (parse_sum > 10)
-            parse_sum = `${parse_sum.substring(0, 10)}...`
-        if (parse_average > 10)
-            parse_average = `${parse_average.substring(0, 10)}...`
+            parseUrl = `${url.substring(0, 20)}...`
+        if (parseSum > 10)
+            parseSum = `${parseSum.substring(0, 10)}...`
+        if (parseAverage > 10)
+            parseAverage = `${parseAverage.substring(0, 10)}...`
 
-        result[url] = { sum: money(sum), parse_sum, average: money(average), parse_average, url, sites_slug, parse_url }
+        result[url] = { sum: money(sum), parseSum, average: money(average), parseAverage, url, sitesSlug, parseUrl }
     }
     const list = []
     for (i = 0; i < 10; i++)
@@ -63,20 +63,20 @@ const fillDealObject = (deal, CHART_COLORS, monthYear, data, label, index) => {
 
 const dealsResult = (deals) => {
     const result = deals.map(deal => {
-        let parse_url = deal.url
-        let parse_revenue = money(deal.revenue)
+        let parseUrl = deal.url
+        let parseRevenue = money(deal.revenue)
         if (deal.url.length > 20)
-            parse_url = `${parse_url.substring(0, 20)}...`
-        if (parse_revenue > 10)
-            parse_revenue = `${parse_revenue.substring(0, 10)}...`
+            parseUrl = `${parseUrl.substring(0, 20)}...`
+        if (parseRevenue > 10)
+            parseRevenue = `${parseRevenue.substring(0, 10)}...`
         return {
-            'listing_id': parse_url,
+            'listingId': parseUrl,
             'url': deal.url,
-            'listing_month': deal.month_creation,
-            'listing_date': new Date(deal.date).toISOString().split('T')[0],
-            'broker': deal.sites_slug,
+            'listingMonth': deal.monthCreation,
+            'listingDate': new Date(deal.date).toISOString().split('T')[0],
+            'broker': deal.sitesSlug,
             'revenue': money(deal.revenue),
-            'parse_revenue': parse_revenue
+            'parseRevenue': parseRevenue
         }
     })
     return [...result.slice(0, 10)];
@@ -95,11 +95,27 @@ const listMonths = (rangeDate) => {
     for (let count = 0; count <= totalMonths; count++) {
         const date = new Date(startDate)
         const eachDate = new Date(date.setMonth(date.getMonth() + count)).toISOString().substring(0, 7)
-        list.push(`'${eachDate}'`)
+        list.push(eachDate)
     }
     return {
         label: list.join(','),
         totalMonths: totalMonths + 1
+    }
+}
+
+const getDateRange = (daterange) => {
+    if (!daterange) {
+        daterange = '11/01/2020 - 11/30/2021'
+    }
+    const start = daterange.split('-')[0].trim().replaceAll('/', '-')
+    const end = daterange.split('-')[1].trim().replaceAll('/', '-')
+    startDate = `${start.split('-')[2]}-${start.split('-')[0]}-${start.split('-')[1]}`
+    endDate = `${end.split('-')[2]}-${end.split('-')[0]}-${end.split('-')[1]}`
+
+    return {
+        startDate,
+        endDate,
+        daterange
     }
 }
 
@@ -110,5 +126,6 @@ module.exports = {
     getChartColors,
     fillDealObject,
     dealsResult,
-    listMonths
+    listMonths,
+    getDateRange
 }
