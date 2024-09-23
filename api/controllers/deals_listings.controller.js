@@ -8,6 +8,5 @@ const findDealsListingPerMonth = async (queryString) => {
     return await DealHistoryService.findDealsListingPerMonth(queryString)
 
 }
-findDealsListingPerMonth
 
 module.exports = { findDealsListingPerMonthSum, findDealsListingPerMonth }
